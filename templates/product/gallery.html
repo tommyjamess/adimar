@@ -1,0 +1,49 @@
+{% extends 'partials/base.html' %}
+
+{% load humanize %}
+
+{% block nav %}
+    {% include "partials/nav.html" %}
+{% endblock nav %}
+
+{% block spacing %}
+    {% include "partials/hspacing.html" %}
+{% endblock spacing %}
+
+
+
+{% block content %}
+    <h3 class="text-center h3 my-5">Gallery</h3>
+    
+    <!--Gallery Content Top -->
+    <div class="container-fluid gall">
+        <div class="row">
+            
+            {% if gallery %}
+                {% for item in gallery %}
+                    <div class="card  col-lg-4">
+                        <img src="{{item.image.url}}" alt="">
+                        <div class="card-inner card-img-overlay ">
+                            <h4><a href="">{{item.name}}</a></h4>
+                            <h5>Price : <span>&#x20A6 {{item.dis_price | floatformat:2 | intcomma}}</span></h5>
+                            <div class="rate ">
+                                <li><i class="fa fa-star checked" aria-hidden="true"></i></li>
+                                <li><i class="fa fa-star checked" aria-hidden="true"></i></li>
+                                <li><i class="fa fa-star checked" aria-hidden="true"></i></li>
+                                <li><i class="fa fa-star checked" aria-hidden="true"></i></li>
+                                <li><i class="fa fa-star checked" aria-hidden="true"></i></li>
+                            </div>
+                            <a href="{% url 'products:products-gallerydet' item.id %}" class="see-details">See Detail</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <hr>
+    </div>
+    <!-- Gallery Content End -->
+{% endblock content %}
+
+{% block footer %}
+    {% include "partials/footer.html" %}
+{% endblock footer %}

@@ -1,0 +1,41 @@
+{% extends 'partials/base.html' %}
+
+{% load crispy_forms_tags %}
+
+
+{% block nav %}
+{% include "partials/nav.html" %}
+{% endblock nav %}
+
+{% block spacing %}
+{% include "partials/spacing.html" %}
+{% endblock spacing %}
+
+{% block content %}
+<div class="container-fluid signup ">
+    <h1 class="text-center font-weight-bold">Login</h1>
+    <div class=" d-flex justify-content-center mb-5 ml-1 mr-1 shadow" >
+        <div class="col-lg-4 mt-5 mb-5">
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{form | crispy}}
+                <button type="submit" class="btn btn-success w-100 btn-sm font-weight-bold"
+                    style="font-size: 20px;">Login</button>
+                    <a href="{% url 'user-signup' %}" class="mt-3">SignUp</a>
+            </form>
+        </div>
+    </div>
+
+
+    {% if messages %}
+    {% for message in messages %}
+    {{message}}
+    {% endfor %}
+    {% endif %}
+
+</div>
+{% endblock content %}
+
+{% block footer %}
+{% include "partials/footer.html" %}
+{% endblock footer %}

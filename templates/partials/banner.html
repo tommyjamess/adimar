@@ -1,0 +1,53 @@
+{% load static %}
+<style>
+    .topbanner{
+        
+        max-width: 25rem;
+        
+    }
+    .banner-item-name{
+        position: absolute;
+        top: 21rem;
+        background-color: black;
+        width: 100%;
+        font-size: 27px;
+        font-weight: bold;
+        color: white;
+        padding-left: 10px;
+
+    }
+    .banner-img{
+        max-width: 24rem;
+    }
+    .banner-img img{
+        width: 100%;
+        max-height: 24.3rem;
+    }
+    
+    @media screen and (max-width:600px){
+        .banner-item-name{
+            top: 17rem;
+        }
+    }
+</style>
+<div class=" container border banner">
+    <div class="row">
+        <!-- cloths -->
+        <div class="topbanner owl-carousel  owl-theme">
+                            
+            {% if banner %}
+                {% for item in banner %}
+                    <a href="{% url 'products:products-detail' item.id %}">
+                        <div class="item"><img src="{{item.image.url}}" alt=""></div>
+                        <div class="banner-item-name">
+                            {{item.category.cat_name}}
+                        </div>
+                    </a>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="banner-img">
+            <img src="" alt="" >
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="container-fluid">
+    <div class="categories owl-carousel  owl-theme">
+        
+        {% if cat %}
+            {% for item in cat %}
+                <a href="{% url 'products:products-filter' item.id %}">
+                    <div class="item"><img src="{{item.image.url}}" alt=""> <p class="display-1 bg-white">{{item.cat_name}}</p></div>
+                </a>
+            {% endfor %}
+        {% endif %}
+            
+    </div>
+</div>

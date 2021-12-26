@@ -1,0 +1,51 @@
+{% extends "partials/base.html" %}
+
+{% block title %}
+  user-admin
+{% endblock title %}
+
+{% block nav %}
+{% include "partials/staffnav.html" %}
+{% endblock nav %}
+
+{% block content %}
+<div class="container" style="margin-top: 5rem;">
+  <div class="row">
+    <div class="total-orders  card my-card shadow text-center p-3 col-lg-3 m-3">
+      <a href="{% url 'user:totalorders' %}" class="text-decoration-none">
+        <h4 class="bg-primary text-white font-weight-bold">Total Orders</h4>
+        <p class="p-2 font-weight-bold ">({{totalorders.count}}) Total Oders</p>
+      </a>
+    </div>
+
+
+    <div class="total-orders  card my-card shadow text-center p-3 col-lg-3 m-3">
+      <a href="{% url 'user:neworders' %}" class="text-decoration-none">
+        <h4 class="bg-primary text-white font-weight-bold">New Orders</h4>
+        <p class="p-2 font-weight-bold ">({{neworder.count}}) New Oders</p>
+      </a>
+    </div>
+
+    <div class="total-orders card my-card shadow text-center p-3 col-lg-3 m-3">
+      <a href="{% url 'user:onshipping' %}" class="text-decoration-none">
+        <h4 class="bg-secondary text-white font-weight-bold">Orders Onshipping</h4>
+        <p class="p-2 font-weight-bold ">({{onshipping.count}}) New Oders</p>
+      </a>
+    </div>
+
+    <div class="total-orders card my-card shadow text-center p-3 col-lg-3 m-3">
+      <a href="{% url 'user:deliveredorders' %}" class="text-decoration-none">
+        <h4 class="bg-success text-white font-weight-bold">Orders Delivered</h4>
+        <p class="p-2 font-weight-bold ">({{deliveredorder.count}}) New Oders</p>
+      </a>
+    </div>
+
+    <div class="total-orders card my-card shadow text-center p-3 col-lg-3 m-3">
+      <a href="{% url 'user:preparing' %}" class="text-decoration-none">
+        <h4 class="bg-warning text-white font-weight-bold">Orders Prepared</h4>
+        <p class="p-2 font-weight-bold ">({{preparing.count}}) New Oders</p>
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock content %}

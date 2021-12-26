@@ -1,0 +1,87 @@
+<style>
+.footer #foot-title{
+    font-family: 'Poppins', sans-serif;
+}
+.footer li{
+    list-style: none;
+}
+.footer li a{
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+}
+.footer li:hover a{
+    color: goldenrod;
+}
+.footer .copy{
+    background-color: black;
+    border-top: 2px solid white;
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+   font-size: 12px;
+}
+.footer .copy p{
+    margin-right: 8px;
+}
+</style>
+<div class="footer">
+    <div class="footer-inner container-fluid px-3 py-3">
+        <h2 id="title" >Adimar</h2>
+        <div class="row ">
+            <div class="col-lg-2 col-md-2 col-sm-6">
+                <h3 id="foot-title" class="h5">Navigation</h3>
+                <ul>
+                    <li><a href="{% url 'home:home-index' %}">Home</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Contact us</a></li>
+                    <li><a href="{% url 'user:user-login' %}">Login</a></li>
+                    <li><a href="{% url 'order:order-cart' %}">Your Cart</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-6">
+                <h3 id="foot-title" class="h5">Deals</h3>
+                <ul>
+                    <li><a href="{% url 'products:products-custom' %}">Bulk Sales</a></li>
+                    <li><a href="{% url 'products:products-custom' %}">Get a customized dress</a></li>
+                    <li><a href="{% url 'products:product-products' %}">Products</a></li>
+            
+                </ul>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-6">
+                <h3 id="foot-title" class="h5">Our Social Media </h3>
+                <ul>
+                    <li><a href="https://chatwith.io/s/adimar-collections">Whatsapp</a></li>
+                    <li><a href="https://instagram.com/adimar_clothingline">Instagram</a></li>
+                    <li><a href="https://m.facebook.com/adimarClothingline">Facebook</a></li>
+                    <li><a href=" https://mail.google.com/mail/u/">Gmail</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-6">
+                <h3 id="foot-title" class="h5">Contact</h3>
+                <ul>
+                    <li>
+                        <a href=""><span>Phone1 :</span> {{setting.phone_one}}</a>
+                    </li>
+                    <li >
+                        <a href=""><span>Phone2 :</span> {{setting.phone_one}}</a>
+                    </li>
+                    <li >
+                        <a href="" ><span>Email :</span> {{setting.email}}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <h3 id="foot-title" class="h5">Location</h3>
+                <ul>
+                    <li>
+                        <a>{{setting.location}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="copy text-dark text-center ">
+        <p class="text-white">&copy;2021 Adimar Collections</p>
+        <p class="mylink text-white">Designed by <a href="">Adigun Oluwatomisin</a></p>
+    </div>
+</div>

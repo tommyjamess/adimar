@@ -1,0 +1,79 @@
+{% extends "partials/base.html" %}
+
+{% load humanize %}
+
+{% block title %}
+    {{setting.title}}-my cart
+{% endblock title %}
+
+{% block nav %}
+    {% include "partials/nav.html" %}
+{% endblock nav %}
+
+{% block spacing %}
+    {% include "partials/hspacing.html" %}
+{% endblock spacing %}
+
+
+{% block content %}
+    <h3 class="text-center h3 my-5">Shopping Cart</h3>
+    <div class="container-fluid">
+        <p>Your cart contains <span class="h6">{{cart.count}}</span> item(s)</p>
+        <div class="row" style="min-height: 12rem;  ">
+            <style>
+                .empty-cart i{
+                    font-size: 10rem;
+                    color: lightgray;
+                }
+            </style>
+            {% if cart %}
+                {% for item in cart %}
+                    <div class="col-lg-6 col-md-6 col-sm-12 mb-3 row"  >
+                        <img class="" style="max-width: 12rem;min-width: 12rem;" src="{{item.product.image.url }} " alt="">
+                        <div class=" col-lg-8 ml-1 bg-light" style="box-shadow: 0px 0px 3px 0px grey" >
+                            <p class="h5 ml-1">{{item.product.name}}</p>
+                            <span class="row ml-1  display-6"><p class="mr-2 font-weight-bold">Color :</p> <p>{{item.color}}</p> <p class="ml-5 mr-2 font-weight-bold">Size :</p> <p>{{item.size}}</p> </span>
+                            <span class="row ml-1 display-6"> <p class="mr-2 font-weight-bold">Price:</p> 
+                            {% if item.product.dis_price %}
+                                <p class=""> <p class="mr-1">&#x20A6</p> {{ item.product.dis_price | floatformat:2 | intcomma}}</p> 
+                            {% else %}
+                                <p> <p class="mr-1">&#x20A6</p> {{item.product.price | floatformat:2 | intcomma}}</p> 
+                            {% endif %}
+                            </span>
+                            <form action="{% url 'order:order-updatequantity' %}" method="POST">
+                            {% csrf_token %}
+                                <span class="row ml-1 display-6"><p class="mr-2 font-weight-bold">Qty :</p> <input style="height: 1.5rem; width:2.5rem" type="number" name="itemquantity" value="{{item.quantity}}"> <p class="ml-5 mr-2 font-weight-bold">Amount :</p> <p class="mr-1">&#x20A6</p> <p>{{item.amount | floatformat:2 | intcomma}}</p> </span>
+                                <input type="hidden" name="itemid" value="{{item.id}}">
+                                <div class="row ml-1">
+                                    <button type="submit" style=" border:none; color:blue; background:lightgrey; padding-inline: 7px;" class="link"> Update Quantity</button>  <a style="text-decoration: none; background:lightgrey; padding-inline: 7px;" class="link ml-5" href="{% url 'order:order-delete-item' item.id %}"> Remove</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+                {% else %}
+                <div class="container">
+                    <div class=" empty-cart col-lg-6 col-md-6 col-sm-12 mb-3 row">
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        <p class="font-weight-bold">Your cart is empty</p>
+                    </div>
+                </div>
+                
+            {% endif %}
+            
+            
+        </div>
+        <div class="col-lg-4 px-5 bg-light" >
+            <span class="row "><p class="h6 mr-auto font-weight-bold">Total</p> <p>&#x20A6 {{subtotal | floatformat:2 | intcomma}}</p> </span>
+            <p class="font-weight-bold">Shipping fee excluded</p>
+            <a style="background-color: goldenrod;color:white; padding-inline:20px; text-decoration:none;" class="h5 ml-auto mt-5 " href="{% url 'order:order-checkout' %}">CHECK OUT</a>
+        </div>
+    </div>
+        
+{% endblock content %}
+
+{% block footer %}
+    {% include "partials/footer.html" %}
+{% endblock footer %}
+
+

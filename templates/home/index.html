@@ -1,0 +1,93 @@
+{% extends "partials/base.html" %}
+{% load static %}
+
+{% block title %}
+    {{setting.title}}-home
+{% endblock title %}
+
+{% block nav %}
+  {% include "partials/nav.html" %}
+{% endblock nav %}
+
+{% block spacing %}
+    {% include "partials/hspacing.html" %}
+{% endblock spacing %}
+
+{% block banner %}
+    {% include "partials/banner.html" %}
+{% endblock banner %}
+
+
+{% block content %}
+    <h3 class="text-center h3 my-5">Recommended Items</h3>
+    <!--home Content Top -->
+    <div class="home-content container-fluid">
+        <div class="row">
+            <div class="left-bar shadow p-3 mb-5 bg-white rounded d-sm-none d-md-block col-lg-2 col-md-2">
+            
+            </div>
+            <div class="main-bar shadow-none p-3 mb-5 bg-light rounded col-lg-10 col-md-10">
+                <div class="card text-white mainbar-first mb-5">
+                    <a href=""><img src="{% static '' %}images/banner-2.jpg" class="card-img" alt="..."></a>
+                    <div class="card-img-overlay text-center rounded bground-opac">
+                        <h5 class="card-title h3 lh-1">Get A Custom Dress</h5>
+                        <p class="card-text lh-1">There's no greater satisfaction than getting a dress made just to fit you.</p>
+                        <p class="card-text">To have us make one for you, choose a design from our <a href="gallery.html">Gallery</a> or have a chat with our customer care on social media to get across your desired design</p>
+                        <div class="share card-text bg-white ">
+                            <a href="https://chatwith.io/s/adimar-collections"><i class="fa fa-whatsapp" aria-hidden="true"></i> </a>
+                            <a href="https://m.facebook.com/adimarClothingline"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+                            <a href="https://instagram.com/adimar_clothingline"><i class="fa fa-instagram" aria-hidden="true"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="recommended mt-5">
+                    <div class="adire-show">
+                        <p class="h4 text-center my-3 mb-4 show-title">Adire</p>
+                        <div class="adire owl-carousel  owl-theme">
+                            
+                            {% if adire %}
+                                {% for item in adire %}
+                                    <a href="{% url 'products:products-detail' item.id %}">
+                                        <div class="item"><img src="{{item.image.url}}" alt=""></div>
+                                    </a>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="adire-show">
+                        <p class="h4 text-center my-3 mb-4 show-title">Bags</p>
+                        <div class="bags owl-carousel  owl-theme">
+                            
+                            {% if bags %}
+                                {% for item in bags %}
+                                    <a href="{% url 'products:products-detail' item.id %}">
+                                        <div class="item"><img src="{{item.image.url}}" alt=""></div>
+                                    </a>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="adire-show">
+                        <p class="h4 text-center my-3 mb-4 show-titleu ">Urban Wears</p>
+                        <div class="urban owl-carousel  owl-theme">
+                            
+                            {% if urban %}
+                                {% for item in urban %}
+                                    <a href="{% url 'products:products-detail' item.id %}">
+                                        <div class="item"><img src="{{item.image.url}}" alt=""></div>
+                                    </a>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block footer %}
+    {% include "partials/footer.html" %}
+{% endblock footer %}

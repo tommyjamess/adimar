@@ -1,0 +1,46 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block title %}
+  {{setting.title}}-get custom wears
+{% endblock title %}
+
+{% block nav %}
+    {% include "partials/nav.html" %}
+{% endblock nav %}
+
+{% block spacing %}
+    {% include "partials/spacing.html" %}
+{% endblock spacing %}
+
+
+{% block content %}
+    <h3 class="text-center h3 my-5">Get a customized dress</h3>
+    <!--Gallery Content Top -->
+    <div class="container-fluid mb-5 custom-main">
+        <div class="card bg-white text-white">
+            
+            {% if image %}
+                {% for item in image %}
+                    <img src="{{item.img.url}}" class="card-img offset-3" alt="...">
+                {% endfor %}
+            {% endif %}
+                
+            <div class="card-img-overlay custom-text text-center w-100 ">
+                <p class="custom-top"> Every gathering has an outfit that fits into it <br> and There's no greater satisfaction than getting a dress made just to fit you.</p>
+                <p>To have us make one for you, <br> choose a design from our <a href="{% url 'products:products-gallery' %}">Gallery</a> or have a chat with our customer care on our social media pages to get across your desired design</p>
+                <div class="share  bg-white">
+                    <a href=""><i class="fa fa-whatsapp" aria-hidden="true"></i> </a>
+                    <a href=""><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+                    <a href=""><i class="fa fa-twitter" aria-hidden="true"></i> </a>
+                    <a href=""><i class="fa fa-instagram" aria-hidden="true"></i> </a>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Gallery Content End -->
+{% endblock content %}
+
+{% block footer %}
+    {% include "partials/footer.html" %}
+{% endblock footer %}

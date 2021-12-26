@@ -1,0 +1,189 @@
+{% extends 'partials/base.html' %}
+
+{% load humanize %}
+
+{% block title %}
+  {{setting.title}}-bulk detail
+{% endblock title %}
+
+{% block nav %}
+    {% include "partials/nav.html" %}
+{% endblock nav %}
+
+{% block spacing %}
+    {% include "partials/hspacing.html" %}
+{% endblock spacing %}
+
+{% block content %}
+    <h3 class="text-center h3 my-5">Bulk Purchase</h3>
+    <!--home Content Top -->
+    <div class="container-fluid mb-5">
+        <div class="row">
+            <div class="col-lg-3 col-md-12 p-0 bg-white detail-img">
+                <img src="{{detail.image.url}}" class="rounded " alt="">
+            </div>
+            <div class="col-lg-9 col-md-12 border-outline-secondary">
+                <div class="row">
+                    <button class="btn btn-outline-secondary w-50 text-dark" onclick="Detil()" id="detil">Product Detail</button ><button class="btn btn-outline-secondary w-50 text-dark" onclick="Revie()" id="revie" >Review</button>
+                </div>
+                <div class="review_detail row">
+                    <div class="row  col-lg-12  mr-5" id="Pdetail">
+                        <div class="infobox col-lg-6 border-outline-secondary">
+                            <h3 class="h3 mt-2">{{detail.name}}</h3>
+                            <hr>
+                            <div class="row pl-3 font-weight-bold">
+                                <p class="mr-3">Product Code: <span class="font-weight-normal">{{detail.product_code}}</span></p><p>Availability: <span class="font-weight-normal">{{detail.availability}}</span></p>
+                            </div>
+                            <div class="row pl-3 price">
+                                <p class="mr-3 font-weight-bold">Price: <span class="font-weight-normal">&#x20A6 {{detail.bulk_price | floatformat:2 | intcomma}}</span></p> <p class="actual-price display-1"><strike><span >&#x20A6</span>{{detail.price | floatformat:2 | intcomma}}</strike></p>
+                            </div>
+                            <p class="font-weight-bold">Available Colors: <span class="font-weight-normal ml-3">{{detail.colors}}</span></p>
+                            <p class="font-weight-bold">Available Sizes: <span class="font-weight-normal ml-3">{{detail.sizes}} </span></p>
+                        </div>
+                        <div class="col-lg-6">
+                            <form action="">
+                                <p class="h6 mt-2">Input Total Quantity <span class="font-weight-normal">(minimmum quantity of 5)</span></p>
+                                <input class="w-100" type="number" min="5">
+                                <p class="h6">Input color, size and quantity</p>
+                                <textarea class="w-100" name="" id="" cols="30" rows="5" placeholder="E.g  Color   /  Size  /  Quantity" ></textarea>
+                                <button type="submit" class="btn btn-success btn-block mt-2 active  ">Add to cart</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="reviews col-lg-12 " id="Reviews">
+                        <div class="review-inner">
+                            <p class="h5">Comments....</p>
+                            <hr>
+                            <div class="row user-image ml-1">
+                                <div class=" row col-lg-3">
+                                    <div class="mt-4"><img src="images/hana.jpg" alt=""></div>
+                                    <div class="user-name ml-3 mt-4"><p class="h6">Hannah Yooooo</p></div>
+                                </div>
+                                <div class=" col-lg-9 comments">
+                                    <div class="mt-4"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, blanditiis. Sint eveniet maxime assumenda possimus officiis veritatis ullam tenetur qui, modi aliquam, quos nemo, illum vero ea deleniti odio cumque!</p></div>
+                                    <div class="h5 ">
+                                        <i class="fa fa-star checked" aria-hidden="true"></i>
+                                        <i class="fa fa-star checked" aria-hidden="true"></i>
+                                        <i class="fa fa-star checked" aria-hidden="true"></i>
+                                        <i class="fa fa-star checked" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="row user-image ml-1 ">
+                                <div class=" row col-lg-3">
+                                    <div class="mt-4"><img src="images/hana.jpg" alt=""></div>
+                                    <div class="user-name ml-3 mt-4"><p class="h6">Hannah Yooooo</p></div>
+                                </div>
+                                <div class=" col-lg-9 comments">
+                                    <div class="mt-4"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, blanditiis. Sint eveniet maxime assumenda possimus officiis veritatis ullam tenetur qui, modi aliquam, quos nemo, illum vero ea deleniti odio cumque!</p></div>
+                                    <div class="h5 ">
+                                        <i class="fa fa-star checked" aria-hidden="true"></i>
+                                        <i class="fa fa-star checked" aria-hidden="true"></i>
+                                        <i class="fa fa-star checked" aria-hidden="true"></i>
+                                        <i class="fa fa-star checked" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="row user-image ml-1 ">
+                                <div class=" row col-lg-3">
+                                    <div class="mt-4"><img src="images/hana.jpg" alt=""></div>
+                                    <div class="user-name ml-3 mt-4"><p class="h6">Hannah Yooooo</p></div>
+                                </div>
+                                <div class=" col-lg-9 comments">
+                                    <div class="mt-4"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, blanditiis. Sint eveniet maxime assumenda possimus officiis veritatis ullam tenetur qui, modi aliquam, quos nemo, illum vero ea deleniti odio cumque!</p></div>
+                                    <div class="h5 ">
+                                        <i class="fa fa-star checked" aria-hidden="true"></i>
+                                        <i class="fa fa-star checked" aria-hidden="true"></i>
+                                        <i class="fa fa-star checked" aria-hidden="true"></i>
+                                        <i class="fa fa-star checked" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="row user-image ml-1 ">
+                                <div class=" row col-lg-3">
+                                    <div class="mt-4"><img src="images/hana.jpg" alt=""></div>
+                                    <div class="user-name ml-3 mt-4"><p class="h6">Hannah Yooooo</p></div>
+                                </div>
+                                <div class=" col-lg-9 comments">
+                                    <div class="mt-4"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, blanditiis. Sint eveniet maxime assumenda possimus officiis veritatis ullam tenetur qui, modi aliquam, quos nemo, illum vero ea deleniti odio cumque!</p></div>
+                                    <div class="h5 ">
+                                        <i class="fa fa-star checked" aria-hidden="true"></i>
+                                        <i class="fa fa-star checked" aria-hidden="true"></i>
+                                        <i class="fa fa-star checked" aria-hidden="true"></i>
+                                        <i class="fa fa-star checked" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="write-rev" id="Rate">
+                            <form>
+                                <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Rate This Product</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                </div>
+                                <ul class="rate row ml-2 h5">
+                                    <li class="mr-2" ><label for="star_1"><i class="fa fa-star" aria-hidden="true"></i></label><input type="radio" name="rating" id="star_1" value="1"></li>
+                                    <li class="mr-2" ><label for="star_2"><i class="fa fa-star" aria-hidden="true"></i></label><input type="radio" name="rating" id="star_2" value="2"></li>
+                                    <li class="mr-2" ><label for="star_3"><i class="fa fa-star" aria-hidden="true"></i></label><input type="radio" name="rating" id="star_3" value="3"></li>
+                                    <li class="mr-2" ><label for="star_4"><i class="fa fa-star" aria-hidden="true"></i></label><input type="radio" name="rating" id="star_4" value="4"></li>
+                                    <li class="mr-2" ><label for="star_5"><i class="fa fa-star checked" aria-hidden="true"></i></label><input type="radio" name="rating" id="star_5" value="5"></li>
+                                </ul>
+                                <button type="submit" class="btn btn-dark text-white btn-block">Rate</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid mb-5">
+        <div class="adire-show related ">
+            <p class="h4 text-center my-3">Related Items</p>
+            <div class="urban owl-carousel  owl-theme">
+                <a href="">
+                    <div class="item"><img src="images/cloth/img3.jpg" alt=""></div>
+                </a>
+                <a href="">
+                    <div class="item"><img src="images/reco/img1.jpg" alt=""></div>
+                </a>
+                <a href="">
+                    <div class="item"><img src="images/reco/img2.jpg" alt=""></div>
+                </a>
+                <a href="">
+                    <div class="item"><img src="images/ladies/img1.jpg" alt=""></div>
+                </a>
+                <a href="">
+                    <div class="item"><img src="images/cloth/Untitled-1.jpg" alt=""></div>
+                </a>
+                <a href="">
+                    <div class="item"><img src="images/cloth/img6.jpg" alt=""></div>
+                </a>
+                <a href="">
+                    <div class="item"><img src="images/cloth/img7.jpg" alt=""></div>
+                </a>
+                <a href="">
+                    <div class="item"><img src="images/cloth/img6.jpg" alt=""></div>
+                </a>
+                <a href="">
+                    <div class="item"><img src="images/cloth/img6.jpg" alt=""></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- home Content End -->
+{% endblock content %}
+
+{% block footer %}
+    {% include "partials/footer.html" %}
+{% endblock footer %}

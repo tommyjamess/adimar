@@ -1,0 +1,150 @@
+{% extends 'partials/base.html' %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+{{setting.title}}-checkout
+{% endblock title %}
+
+{% block nav %}
+{% include "partials/nav.html" %}
+{% endblock nav %}
+
+{% block spacing %}
+{% include "partials/hspacing.html" %}
+{% endblock spacing %}
+
+
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert  alert-{{message.tags}}" role="alert"
+    style="font-weight:bold; color:black; background-color:goldenrod">
+    <button type="button" class="close" data-dismiss="alert" aria-label="close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    {{message}}
+</div>
+{% endfor %}
+{% endif %}
+<h3 class="text-center h3 my-5">Checkout</h3>
+<!--Gallery Content Top -->
+<div class="checkout container-fluid bg-light pt-3 pb-3 mb-5">
+    <div class="row container offset-1">
+        <div class="col-lg-3 bg-white">
+            <p class="h4">{{check.count}} items</p>
+            <hr>
+            <form action="{% url 'order:deliverydata' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="checkcity" value="{{checkcity}}">
+                <div style="width:15rem ;">
+                    <label for="" style="margin-right: 10px; font-weight: bold;">Select Delivery Location : </label>
+                    <select name="delfee" style="margin-right: 5px; width:8rem">
+                        <option value="">
+                            Select delivery city
+                        </option>
+                        <option value="{{delfee.fee1}}"> <button type="submit">{{delfee.loc1}}: &#8358;
+                                {{delfee.fee1}}</button>
+                        </option>
+                        <option value="{{delfee.fee2}}"> {{delfee.loc2}}: &#8358; {{delfee.fee2}}
+                        </option>
+                        <option value="{{delfee.fee3}}"> {{delfee.loc3}}: &#8358; {{delfee.fee3}}
+                        </option>
+                        <option value="{{delfee.fee4}}"> {{delfee.loc4}}: &#8358; {{delfee.fee4}}
+                        </option>
+                        <option value="{{delfee.fee5}}"> {{delfee.loc5}}: &#8358; {{delfee.fee5}}
+                        </option>
+                        <option value="{{delfee.fee6}}"> {{delfee.loc6}}: &#8358; {{delfee.fee6}}
+                        </option>
+                        <option value="{{delfee.fee7}}"> {{delfee.loc7}}: &#8358; {{delfee.fee7}}
+                        </option>
+                        <option value="{{delfee.fee8}}"> {{delfee.loc8}}: &#8358; {{delfee.fee8}}
+                        </option>
+                        <option value="{{delfee.fee9}}"> {{delfee.loc9}}: &#8358; {{delfee.fee9}}
+                        </option>
+                        <option value="{{delfee.fee10}}"> {{delfee.loc10}}: &#8358; {{delfee.fee10}}
+                        </option>
+                        <option value="{{delfee.fee11}}"> {{delfee.loc11}}: &#8358; {{delfee.fee11}}
+                        </option>
+                        <option value="{{delfee.fee12}}"> {{delfee.loc12}}: &#8358; {{delfee.fee12}}
+                        </option>
+                        <option value="{{delfee.fee13}}"> {{delfee.loc13}}: &#8358; {{delfee.fee13}}
+                        </option>
+                        <option value="{{delfee.fee14}}"> {{delfee.loc14}}: &#8358; {{delfee.fee14}}
+                        </option>
+                        <option value="{{delfee.fee15}}"> {{delfee.loc15}}: &#8358; {{delfee.fee15}}
+                        </option>
+                        <option value="{{delfee.fee16}}"> {{delfee.loc16}}: &#8358; {{delfee.fee16}}
+                        </option>
+                        <option value="{{delfee.fee17}}"> {{delfee.loc17}}: &#8358; {{delfee.fee17}}
+                        </option>
+                        <option value="{{delfee.fee18}}"> {{delfee.loc18}}: &#8358; {{delfee.fee18}}
+                        </option>
+                        <option value="{{delfee.fee19}}"> {{delfee.loc19}}: &#8358; {{delfee.fee19}}
+                        </option>
+                        <option value="{{delfee.fee20}}"> {{delfee.loc20}}: &#8358; {{delfee.fee20}}
+                        </option>
+                    </select>
+
+                    <button type="submit"
+                        style="background-color: green; color:white; padding-inline:10px; padding-block:0px; font-size:15px; font-weight:bold;">Confirm</button>
+                </div>
+            </form>
+            <hr>
+            {% if check %}
+            {% for item in check %}
+            <div class="row">
+                <img style="max-height: 5rem; max-width:5.6rem" src="{{item.product.image.url}}"
+                    class="col-lg-4 col-sm-4" alt="">
+                <div class="col-lg-8 col-sm-8">
+                    <h6 class="">{{item.product.name}}</h6>
+                    <span class="mr-2"><span class="font-weight-bold">Color:</span> {{item.color}}</span><span><span
+                            class="font-weight-bold">Qty:</span> {{item.quantity}}</span><br>
+                    <span>Price: &#x20A6 {{item.amount | floatformat:2 | intcomma}}</span>
+                </div>
+            </div>
+            <hr>
+            {% endfor %}
+            {% endif %}
+            <p style="display: flex; font-size:15px"><a style="text-decoration:none;" class="mr-auto">Subtotal:</a>
+                <a style="text-decoration:none; font-weight:normal;" class="text-dark">&#x20A6 {{subtotal|floatformat:2|intcomma}}</a>
+            </p>
+            <p style="display: flex; font-size:15px;"><a style="text-decoration:none;" class="mr-auto">Shipping:</a>
+                <a style="text-decoration:none; font-weight:normal;" class="text-dark">&#x20A6 {{shippingfee|floatformat:2|intcomma}}</a>
+            </p>
+            <p style="display: flex; font-size:15px;"><a style="text-decoration:none;" class="mr-auto">Total:</a> <a
+                    style="text-decoration:none;" class="text-dark">&#x20A6 {{total | floatformat:2 | intcomma}}</a></p>
+        </div>
+
+
+
+        <div class="billing-address col-lg-8 bg-white pt-3 ml-2 border-rounded">
+            <span class="h5">Billing Information</span>
+            <div class="mt-3">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{form | crispy }}
+                    <button type="submit" class="btn btn-primary col-12 mb-2">Save/Update</button>
+
+                </form>
+                <form action="{% url 'order:order-placeorder' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="amount" value="{{total}}">
+                    <input type="hidden" name="ordernumber" value="{{order_code}}">
+                    <input type="hidden" name="email" value="{{request.user.username}}">
+                    <button type="submit" class="btn btn-primary col-12 mb-2">Place Order</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Gallery Content End -->
+{% endblock content %}
+
+
+{% block footer %}
+{% include "partials/footer.html" %}
+{% endblock footer %}

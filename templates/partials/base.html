@@ -1,0 +1,294 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Patrick+Hand&family=Poppins:wght@100;300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{% static '' %}css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+        integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+        integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static '' %}images/adimarfav/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static '' %}images/adimarfav/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static '' %}images/adimarfav/favicon-16x16.png">
+
+    <title>
+        {% block title %}
+        adimar-Home
+        {% endblock title %}
+    </title>
+</head>
+
+<body>
+    <div class="container-fluid body">
+        <header class="fixed-top container-fluid">
+            {% block nav %}
+
+            {% endblock nav %}
+
+            {% block category %}
+
+            {% endblock category %}
+        </header>
+        {% block spacing %}
+
+        {% endblock spacing %}
+
+
+        <!-- Nav2 End -->
+        {% block banner %} {% endblock banner %}
+
+        {% block content %} {% endblock content %}
+        <!-- home Content End -->
+
+        {% block footer %} {% endblock footer %}
+    </div>
+
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        var Pdetail = document.getElementById("Pdetail");
+        var Reviews = document.getElementById("Reviews");
+        var Indicator = document.getElementById("Indicator");
+        var detil = document.getElementById("detil")
+        var revie = document.getElementById("revie")
+
+        function Detil() {
+            Pdetail.style.display = "block";
+            Pdetail.style.display = "flex";
+            Reviews.style.display = "none";
+            detil.style.backgroundColor = "grey"
+            revie.style.backgroundColor = "white"
+            revie.style.color = "black"
+            Indicator.style.transform = "translateX(240px) translateY(-10px)";
+        }
+
+        function Revie() {
+            Pdetail.style.display = "none";
+            Reviews.style.display = "block";
+            revie.style.backgroundColor = "grey"
+            detil.style.backgroundColor = "white"
+            detil.style.color = "black"
+            Indicator.style.transform = "translateX(0px) translateY(-10px)";
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+
+            $("li").click(function () {
+
+                $("li").removeClass("active")
+                $("li").removeClass("secondary-active")
+                $(this).addClass("active")
+                $(this).prevAll().addClass("secondary-active")
+            });
+
+        })
+    </script>
+
+    <script>
+        $('.topbanner').owlCarousel({
+            center: true,
+            loop: true,
+            margin: 8,
+            dots: false,
+            autoplay: true,
+            rtl: false,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 1
+                },
+                1000: {
+                    items: 1
+                }
+            }
+        })
+    </script>
+    <script>
+        $('.adire').owlCarousel({
+            center: true,
+            loop: true,
+            margin: 8,
+            dots: false,
+            autoplay: true,
+            rtl: true,
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 5
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        })
+    </script>
+    <script>
+        $('.bags').owlCarousel({
+            center: true,
+            loop: true,
+            margin: 8,
+            dots: false,
+            autoplay: true,
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 5
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        })
+    </script>
+    <script>
+        $('.urban').owlCarousel({
+            center: true,
+            loop: true,
+            margin: 8,
+            dots: false,
+            rtl: true,
+            autoplay: true,
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 5
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        })
+
+        $('.random').owlCarousel({
+            center: true,
+            loop: true,
+            margin: 8,
+            dots: false,
+            autoplay: true,
+            responsive: {
+                0: {
+                    items: 3
+                },
+                600: {
+                    items: 5
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        })
+    </script>
+    <script>
+        $('.categories').owlCarousel({
+            center: true,
+            loop: true,
+            margin: 8,
+            dots: false,
+            autoplay: false,
+            autoplayTimeout: 2000,
+            autoplayHoverPause: true,
+            responsive: {
+                0: {
+                    items: 3
+                },
+                600: {
+                    items: 5
+                },
+                1000: {
+                    items: 8
+                }
+            }
+        })
+    </script>
+    <script>
+        var ProductImage = document.getElementById("productImage");
+        var SmallImage = document.getElementsByClassName("smallImage");
+
+        SmallImage[0].onclick = function () {
+            ProductImage.src = SmallImage[0].src;
+        }
+
+        SmallImage[1].onclick = function () {
+            ProductImage.src = SmallImage[1].src;
+        }
+
+        SmallImage[2].onclick = function () {
+            ProductImage.src = SmallImage[2].src;
+        }
+
+        SmallImage[3].onclick = function () {
+            ProductImage.src = SmallImage[3].src;
+        }
+
+        SmallImage[4].onclick = function () {
+            ProductImage.src = SmallImage[4].src;
+        }
+
+        SmallImage[5].onclick = function () {
+            ProductImage.src = SmallImage[5].src;
+        }
+
+        SmallImage[6].onclick = function () {
+            ProductImage.src = SmallImage[6].src;
+        }
+
+        SmallImage[7].onclick = function () {
+            ProductImage.src = SmallImage[7].src;
+        }
+
+        SmallImage[8].onclick = function () {
+            ProductImage.src = SmallImage[8].src;
+        }
+
+        SmallImage[9].onclick = function () {
+            ProductImage.src = SmallImage[9].src;
+        }
+
+        SmallImage[10].onclick = function () {
+            ProductImage.src = SmallImage[10].src;
+        };
+
+    </script>
+</body>
+</html>

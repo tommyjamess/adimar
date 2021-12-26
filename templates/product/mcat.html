@@ -1,0 +1,101 @@
+{% extends "partials/base.html" %}
+
+{% load humanize %}
+
+{% block title %}
+{{setting.title}}-products
+{% endblock title %}
+
+{% block nav %}
+{% include "partials/nav.html" %}
+{% endblock nav %}
+
+{% block category %}
+{% include "partials/category.html" %}
+{% endblock category %}
+
+{% block spacing %}
+{% include "partials/spacing.html" %}
+{% endblock spacing %}
+
+{% block content %}
+
+
+
+<h3 class="text-center h3 my-5 text-capitalize">{{title}}</h3>
+
+<!--home Content Top -->
+<div class="container-fluid mb-5">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-dismissible fade show" role="alert"
+        style="font-weight:bold; color:black; background-color:goldenrod">
+        {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <div class="row">
+
+        {% if products %}
+        {% for item in products %}
+        <div class="card col-lg-3 mt-3">
+            <p class="h5">{{item.name}}</p>
+            <p class="pprice">Price :<span> &#x20A6 {{item.dis_price | floatformat:2 | intcomma}}</span>
+                <strike><sup>&#x20A6 {{item.price | floatformat:2 | intcomma}}</sup></strike>
+            </p>
+            <img src="{{item.image.url}}" alt="">
+            <div class="row pt-2">
+                <div class="love mr-auto ml-3">
+                    <form action="{% url 'products:loveit' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="radio" id="love" , name="love" , value="{{loved}}">
+                        <input type="hidden" id="prod" , name="prod" , value="{{item.id}}">
+                        <button type="submit" style="border: none;background:white">
+                            <label for="love">
+                                <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+
+                            </label>
+                        </button>
+                    </form>
+                </div>
+                <div class="mr-1 addtocart">
+                    <form action="{% url 'order:order-addtocart' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="quantity" value="1">
+                        <input type="hidden" name="size" value="Medium">
+                        <input type="hidden" name="prodid" value="{{item.id}}">
+
+                        {% if item.color %}
+                        <input type="hidden" name="color" value="{{item.color}}">
+                        {% else %}
+                        <input type="hidden" name="color" value="Available color">
+                        {% endif %}
+
+                        <button class="btn btn-sm" type="submit">Add to cart</button>
+                    </form>
+                </div>
+                <div class="mr-3 cdetail">
+                    <a href="{% url 'products:products-detail' item.id %}" class="btn btn-sm ">See Detail</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="container-fluid text-center">
+            <p class="display-5 text-center"> {{title}} products are not available </p>
+            <p class="display-5 text-center"> </p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+<!-- home Content End -->
+
+{% endblock content %}
+
+
+{% block footer %}
+{% include "partials/footer.html" %}
+{% endblock footer %}

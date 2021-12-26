@@ -1,0 +1,70 @@
+{% extends "partials/base.html" %}
+{% load humanize %}
+
+{% block title %}
+  admin-total orders
+{% endblock title %}
+
+{% block nav %}
+{% include "partials/staffnav.html" %}
+{% endblock nav %}
+
+{% block content %}
+<div class="" style="margin-top: 5rem;">
+    <div>
+        <h3 class="font-weight-bold">TOTAL ORDERS</h3>
+    </div>
+
+    <div class="order-list">
+        <style>
+            table th {
+                font-size: 11px;
+            }
+            table td{
+                font-size: 12px;
+            }
+        </style>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Phone 1</th>
+                    <th>Phone 2</th>
+                    <th>Amount</th>
+                    <th>Payment confirmed</th>
+                    <th>Payment code</th>
+                    <th>Street</th>
+                    <th>Nearest stop</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% if totalorders %}
+                {% for item in totalorders %}
+                <tr>
+                    <td>{{item.first_name}}</td>
+                    <td>{{item.last_name}}</td>
+                    <td>{{item.phone_one}}</td>
+                    <td>{{item.phone_two}}</td>
+                    <td>{{item.total | intcomma}}</td>
+                    <td class="text-success">{{item.payment_verified}}</td>
+                    <td>{{item.payment_code}}</td>
+                    <td>{{item.street}}</td>
+                    <td>{{item.nearest_stop}}</td>
+                    <td>{{item.city}}</td>
+                    <td>{{item.state}}</td>
+                    <td class="text-success">{{item.status}}</td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock content %}

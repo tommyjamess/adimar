@@ -1,0 +1,368 @@
+{% extends 'partials/base.html' %}
+
+{% load humanize %}
+
+{% block title %}
+{{setting.title}}-product detail
+{% endblock title %}
+
+{% block nav %}
+{% include "partials/nav.html" %}
+{% endblock nav %}
+
+{% block spacing %}
+{% include "partials/hspacing.html" %}
+{% endblock spacing %}
+
+{% block content %}
+<style>
+    .detail-main #productImage {
+        max-width: 25rem;
+    }
+
+    .detail-main .options {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 50rem;
+    }
+
+    .detail-main .options div {
+        padding-inline: 3px;
+        padding-block: 3px;
+    }
+
+    .detail-main img {
+        max-width: 3rem;
+        box-shadow: 0px 0px 4px 0px grey;
+    }
+</style>
+<h3 class="text-center h3 my-5">Products Detail</h3>
+<!--home Content Top -->
+<div class="container-fluid mb-5">
+    <div class="row">
+        <div class="col-lg-3 col-md-3 p-0 bg-white detail-img">
+            <style>
+                .loves-it{
+                    position: absolute;
+                    top: 1rem;
+                    left: 17rem;
+                }
+                .loves-it i{
+                    font-size:2rem;
+                    color: red;
+
+                }
+                .loves-it span{
+                    position: relative;
+                    left: -1.55rem;
+                    top: -0.4rem;
+                    color: white;
+                    font-weight: bold;
+                }
+            </style>
+
+            <div class="row detail-main">
+                <div class="product-image container">
+                    <img src="{{detail.image.url}}" alt="" id="productImage">
+                    <div class="loves-it">
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                        <span>{{loves}}</span>
+                    </div>
+                    <div class="options">
+
+                        {% if detail.image_one %}
+                        <div>
+                            <img src="{{detail.image.url}}" alt="" class="smallImage">
+                        </div>
+                        {% endif %}
+
+
+                        {% if detail.image_two %}
+                        <div>
+                            <img src="{{detail.image_two.url}}" alt="" class="smallImage">
+                        </div>
+                        {% endif %}
+
+
+                        {% if detail.image_four %}
+                        <div>
+                            <img src="{{detail.image_four.url}}" alt="" class="smallImage">
+                        </div>
+                        {% endif %}
+                        {% if detail.image_five %}
+                        <div>
+                            <img src="{{detail.image_five.url}}" alt="" class="smallImage">
+                        </div>
+                        {% endif %}
+                        {% if detail.image_six %}
+                        <div>
+                            <img src="{{detail.image_six.url}}" alt="" class="smallImage">
+                        </div>
+                        {% endif %}
+                        {% if detail.image_seven %}
+                        <div>
+                            <img src="{{detail.image_seven.url}}" alt="" class="smallImage">
+                        </div>
+                        {% endif %}
+                        {% if detail.image_eight %}
+                        <div>
+                            <img src="{{detail.image_eight.url}}" alt="" class="smallImage">
+                        </div>
+                        {% endif %}
+                        {% if detail.image_nine %}
+                        <div>
+                            <img src="{{detail.image_nine.url}}" alt="" class="smallImage">
+                        </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-9 border-outline-secondary">
+            <div class="row">
+                <button class="btn btn-outline-secondary w-50 text-dark font-weight-bold " onclick="Detil()" id="detil">Product
+                    Detail</button><button class="btn btn-outline-secondary w-50 text-dark font-weight-bold" onclick="Revie()"
+                    id="revie">Review</button>
+            </div>
+
+            <div class="review_detail row">
+                <div class="row  col-lg-12 mr-5" id="Pdetail">
+                    <div class="infobox col-lg-6 border-outline-secondary">
+                        <h3 class="h3 mt-2">{{detail.name}}</h3>
+                        <hr>
+                        <div class="row pl-3 font-weight-bold">
+                            <p class="mr-3">Product Code: <span
+                                    class="font-weight-normal">{{detail.product_code}}</span></p>
+                            <p>Availability: <span class="font-weight-normal">{{detail.availability}}</span></p>
+                        </div>
+                        <div class="row pl-3 price">
+                            <p class="mr-3 font-weight-bold">Price: <span class="font-weight-normal">&#x20A6
+                                    {{detail.dis_price | floatformat:2 | intcomma}}</span></p>
+                            <p class="actual-price display-1"><strike><span>&#x20A6</span>
+                                    {{detail.price | floatformat:2| intcomma}}</strike></p>
+                        </div>
+                        <p class="font-weight-bold">Available Colors: <span
+                                class="font-weight-normal ml-3">{{detail.colors}} </span></p>
+                        <p class="font-weight-bold">Available Sizes: <span
+                                class="font-weight-normal ml-3">{{detail.sizes}}</span></p>
+                        <a href="{% url 'products:products-bulk' detail.id  %}" class=" mt-2 margin-left-auto "> Click
+                            here for Bulk Purchase</a>
+                    </div>
+
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        {{message}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+
+                    <div class="col-lg-6">
+                        <form action="{% url 'order:order-addtocart' %}" method="POST">
+                            {% csrf_token %}
+                            <label for="" class="font-weight-bold display-5">Select Quantity</label>
+                            <select class="custom-select mb-3" name="quantity">
+                                <option>Choose Quantity</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+
+                            <label for="" class="font-weight-bold display-5">Select Color</label>
+                            <select class="custom-select mb-3" name="color">
+                                <option>Choose Color</option>
+
+                                {% if colors %}
+                                {% if colors.color_one %}
+                                <option value="{{colors.color_one}}">{{colors.color_one}}</option>
+                                {% endif %}
+                                {% if colors.color_two %}
+                                <option value="{{colors.color_two}}">{{colors.color_two}}</option>
+                                {% endif %}
+                                {% if colors.color_three %}
+                                <option value="{{colors.color_three}}">{{colors.color_three}}</option>
+                                {% endif %}
+                                {% if colors.color_four %}
+                                <option value="{{colors.color_four}}">{{colors.color_four}}</option>
+                                {% endif %}
+                                {% if colors.color_five %}
+                                <option value="{{colors.color_five}}">{{colors.color_five}}</option>
+                                {% endif %}
+                                {% if colors.color_six %}
+                                <option value="{{colors.color_six}}">{{colors.color_six}}</option>
+                                {% endif %}
+                                {% if colors.color_seven %}
+                                <option value="{{colors.color_seven}}">{{colors.color_seven}}</option>
+                                {% endif %}
+                                {% if colors.color_eight %}
+                                <option value="{{colors.color_eight}}">{{colors.color_eight}}</option>
+                                {% endif %}
+                                {% if colors.color_nine %}
+                                <option value="{{colors.color_nine}}">{{colors.color_nine}}</option>
+                                {% endif %}
+                                {% if colors.color_ten %}
+                                <option value="{{colors.color_ten}}">{{colors.color_ten}}</option>
+                                {% endif %}
+                                {% endif %}
+                            </select>
+
+                            <label for="" class="font-weight-bold display-5">Select Size</label>
+                            <select class="custom-select mb-3" name="size">
+                                <option>Choose Size</option>
+                                <option value="XXLarge">XXLarge</option>
+                                <option value="XLarge">XLarge</option>
+                                <option value="Large">Large</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Small">Small</option>
+                            </select>
+                            <input type="hidden" value="{{detail.id}} " name="prodid">
+                            <button type="submit" class="btn btn-success btn-block mt-2 active  ">Add to cart</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="reviews col-lg-12 " id="Reviews">
+                    <div class="review-inner">
+                        <p class="h5">Comments....</p>
+                        <hr>
+                        <div class="row user-image ml-1">
+                            <div class=" row col-lg-3">
+                                <div class="mt-4"><img src="images/hana.jpg" alt=""></div>
+                                <div class="user-name ml-3 mt-4">
+                                    <p class="h6">Hannah Yooooo</p>
+                                </div>
+                            </div>
+                            <div class=" col-lg-9 comments">
+                                <div class="mt-4">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, blanditiis.
+                                        Sint eveniet maxime assumenda possimus officiis veritatis ullam tenetur qui,
+                                        modi aliquam, quos nemo, illum vero ea deleniti odio cumque!</p>
+                                </div>
+                                <div class="h5 ">
+                                    <i class="fa fa-star checked" aria-hidden="true"></i>
+                                    <i class="fa fa-star checked" aria-hidden="true"></i>
+                                    <i class="fa fa-star checked" aria-hidden="true"></i>
+                                    <i class="fa fa-star checked" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row user-image ml-1 ">
+                            <div class=" row col-lg-3">
+                                <div class="mt-4"><img src="images/hana.jpg" alt=""></div>
+                                <div class="user-name ml-3 mt-4">
+                                    <p class="h6">Hannah Yooooo</p>
+                                </div>
+                            </div>
+                            <div class=" col-lg-9 comments">
+                                <div class="mt-4">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, blanditiis.
+                                        Sint eveniet maxime assumenda possimus officiis veritatis ullam tenetur qui,
+                                        modi aliquam, quos nemo, illum vero ea deleniti odio cumque!</p>
+                                </div>
+                                <div class="h5 ">
+                                    <i class="fa fa-star checked" aria-hidden="true"></i>
+                                    <i class="fa fa-star checked" aria-hidden="true"></i>
+                                    <i class="fa fa-star checked" aria-hidden="true"></i>
+                                    <i class="fa fa-star checked" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row user-image ml-1 ">
+                            <div class=" row col-lg-3">
+                                <div class="mt-4"><img src="images/hana.jpg" alt=""></div>
+                                <div class="user-name ml-3 mt-4">
+                                    <p class="h6">Hannah Yooooo</p>
+                                </div>
+                            </div>
+                            <div class=" col-lg-9 comments">
+                                <div class="mt-4">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, blanditiis.
+                                        Sint eveniet maxime assumenda possimus officiis veritatis ullam tenetur qui,
+                                        modi aliquam, quos nemo, illum vero ea deleniti odio cumque!</p>
+                                </div>
+                                <div class="h5 ">
+                                    <i class="fa fa-star checked" aria-hidden="true"></i>
+                                    <i class="fa fa-star checked" aria-hidden="true"></i>
+                                    <i class="fa fa-star checked" aria-hidden="true"></i>
+                                    <i class="fa fa-star checked" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row user-image ml-1 ">
+                            <div class=" row col-lg-3">
+                                <div class="mt-4"><img src="images/hana.jpg" alt=""></div>
+                                <div class="user-name ml-3 mt-4">
+                                    <p class="h6">Hannah Yooooo</p>
+                                </div>
+                            </div>
+                            <div class=" col-lg-9 comments">
+                                <div class="mt-4">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, blanditiis.
+                                        Sint eveniet maxime assumenda possimus officiis veritatis ullam tenetur qui,
+                                        modi aliquam, quos nemo, illum vero ea deleniti odio cumque!</p>
+                                </div>
+                                <div class="h5 ">
+                                    <i class="fa fa-star checked" aria-hidden="true"></i>
+                                    <i class="fa fa-star checked" aria-hidden="true"></i>
+                                    <i class="fa fa-star checked" aria-hidden="true"></i>
+                                    <i class="fa fa-star checked" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="write-rev" id="Rate">
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Rate This Product</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                            <ul class="rate row ml-2 h5">
+                                <li class="mr-2"><label for="star_1"><i class="fa fa-star"
+                                            aria-hidden="true"></i></label><input type="radio" name="rating" id="star_1"
+                                        value="1"></li>
+                                <li class="mr-2"><label for="star_2"><i class="fa fa-star"
+                                            aria-hidden="true"></i></label><input type="radio" name="rating" id="star_2"
+                                        value="2"></li>
+                                <li class="mr-2"><label for="star_3"><i class="fa fa-star"
+                                            aria-hidden="true"></i></label><input type="radio" name="rating" id="star_3"
+                                        value="3"></li>
+                                <li class="mr-2"><label for="star_4"><i class="fa fa-star"
+                                            aria-hidden="true"></i></label><input type="radio" name="rating" id="star_4"
+                                        value="4"></li>
+                                <li class="mr-2"><label for="star_5"><i class="fa fa-star checked"
+                                            aria-hidden="true"></i></label><input type="radio" name="rating" id="star_5"
+                                        value="5"></li>
+                            </ul>
+                            <button type="submit" class="btn btn-dark text-white btn-block">Rate</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- home Content End -->
+{% endblock content %}
+
+{% block footer %}
+{% include "partials/footer.html" %}
+{% endblock footer %}
