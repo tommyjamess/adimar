@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-)3$8smfl_wg13p7l!)!0&43ft)d8h-xs#3n7)f=r+pdkif^@+m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['13.53.62.53', 'adimarcollections.com', 'www.adimarcollections.com', '127.0.0.1',]
+ALLOWED_HOSTS = ['16.170.226.234', 'adimarcollections.com', 'www.adimarcollections.com',]
 
 
 # Application definition
@@ -131,15 +131,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, '/adimar/static')
+STATIC_ROOT = os.path.join(BASE_DIR, '/static')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # STATIC_ROOT = '/adimar/static'
 
-STATICFILES_DIRS = [
+# STATICFILES_DIRS = [
 
-    BASE_DIR/ 'static'
-]
+#     BASE_DIR/ 'static'
+# ]
 
 
 
