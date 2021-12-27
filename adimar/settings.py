@@ -16,6 +16,11 @@ import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'adimar/static')
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -165,8 +170,10 @@ PUBLIC_KEY = 'pk_test_dfbd33c33f9aefd94595502f232b31ead4ebf22d'
 
 
 # Media Folder settings
+MEDIA_DIR = os.path.join(BASE_DIR, 'uploads/uploads')
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads/uploads')
+
 #...
 SITE_ID = 1
 
