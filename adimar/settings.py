@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-)3$8smfl_wg13p7l!)!0&43ft)d8h-xs#3n7)f=r+pdkif^@+m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['13.53.62.53', 'adimarcollections.com', 'www.adimarcollections.com']
+ALLOWED_HOSTS = ['13.53.62.53', 'adimarcollections.com', 'www.adimarcollections.com', '127.0.0.1',]
 
 
 # Application definition
@@ -84,25 +84,6 @@ WSGI_APPLICATION = 'adimar.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-
-#     },
-
-#     'auth_db': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     },
-
-#     'operations_db': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'adimardb',
-#         'USER': 'postgres',
-#         'PASSWORD': 'adiguntommy',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432',
-#     },
-# }
 
 
 DATABASES = {
@@ -150,23 +131,23 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, '/adimar/static')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-# DATABASE_ROUTERS = ['routers.db_routers.AuthRouter',
-#                     'routers.db_routers.OpsRouter'
-#                     ]
+# STATIC_ROOT = '/adimar/static'
+
+STATICFILES_DIRS = [
+
+    BASE_DIR/ 'static'
+]
+
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-STATICFILES_DIRS = [
-
-    BASE_DIR/ "static"
-]
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'home/static')]
 
 
 LOGIN_REDIRECT_URL = 'home:home-index'
@@ -181,6 +162,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 SECRET_KEY =  'sk_test_f7d7980e92bd6c5f5cd42c150468712972efd426'
 PUBLIC_KEY = 'pk_test_dfbd33c33f9aefd94595502f232b31ead4ebf22d'
+
 
 # Media Folder settings
 MEDIA_URL = '/media/'

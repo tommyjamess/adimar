@@ -5,6 +5,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from user import views as user_view
 from django.contrib.auth import views as auth_view
+from django.conf.urls.static import static
 
 
 urlpatterns = [
