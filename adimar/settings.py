@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-)3$8smfl_wg13p7l!)!0&43ft)d8h-xs#3n7)f=r+pdkif^@+m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['13.53.62.53', 'adimarcollections.com', 'www.adimarcollections.com']
 
 
 # Application definition
@@ -165,7 +165,9 @@ STATICFILES_DIRS = [
     BASE_DIR/ "static"
 ]
 
-# STATIC_ROOT = (BASE_DIR/ "asert/")
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'home/static')]
+
 
 LOGIN_REDIRECT_URL = 'home:home-index'
 
