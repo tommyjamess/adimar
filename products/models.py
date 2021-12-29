@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 
 class Category(models.Model):
     cat_name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='uploads/', null=True)
     clist = models.BooleanField(default=False)
     updated_at = models.DateTimeField(auto_now_add=True)
 
@@ -87,17 +86,17 @@ class Product(models.Model):
     sizes = models.CharField(max_length=1000)
     availability = models.CharField(max_length=20, choices=AVAILABILITY)
     product_code = models.CharField(max_length=10000, default='none')
-    image = models.ImageField(upload_to='uploads/')
-    image_one = models.ImageField(upload_to='uploads/', blank=True, null=True)
-    image_two = models.ImageField(upload_to='uploads/', blank=True, null=True)
-    image_three = models.ImageField(upload_to='uploads/', blank=True, null=True)
-    image_four = models.ImageField(upload_to='uploads/', blank=True, null=True)
-    image_five = models.ImageField(upload_to='uploads/', blank=True, null=True)
-    image_six = models.ImageField(upload_to='uploads/', blank=True, null=True)
-    image_seven = models.ImageField(upload_to='uploads/', blank=True, null=True)
-    image_eight = models.ImageField(upload_to='uploads/', blank=True, null=True)
-    image_nine = models.ImageField(upload_to='uploads/', blank=True, null=True)
-    image_ten = models.ImageField(upload_to='uploads/', blank=True, null=True)
+    image = models.ImageField(upload_to='images/')
+    image_one = models.ImageField(upload_to='images/', blank=True, null=True)
+    image_two = models.ImageField(upload_to='images/', blank=True, null=True)
+    image_three = models.ImageField(upload_to='images/', blank=True, null=True)
+    image_four = models.ImageField(upload_to='images/', blank=True, null=True)
+    image_five = models.ImageField(upload_to='images/', blank=True, null=True)
+    image_six = models.ImageField(upload_to='images/', blank=True, null=True)
+    image_seven = models.ImageField(upload_to='images/', blank=True, null=True)
+    image_eight = models.ImageField(upload_to='images/', blank=True, null=True)
+    image_nine = models.ImageField(upload_to='images/', blank=True, null=True)
+    image_ten = models.ImageField(upload_to='images/', blank=True, null=True)
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     banner = models.BooleanField(default=False)
@@ -120,7 +119,7 @@ class Product(models.Model):
 
 class Customimg(models.Model):
     name = models.CharField(max_length=20)
-    img = models.ImageField(upload_to='uploads/')
+    img = models.ImageField(upload_to='images/')
 
     def __str__(self):
         return str(self.name)
@@ -131,4 +130,4 @@ class Loveit(models.Model):
     value = models.CharField(max_length=6)
 
     def __str__(self):
-        return str(self.user)
+        return str(self.product)

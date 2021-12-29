@@ -3,7 +3,7 @@ from . models import Category, PriceRange, Brand, Product, Mcategory, Customimg,
 
 # Register your models here.
 class AdminCategory(admin.ModelAdmin):
-    list_display = ('cat_name', 'image', 'clist', 'updated_at',)
+    list_display = ('cat_name', 'clist', 'updated_at',)
 
 
 class AdminPriceRange(admin.ModelAdmin):

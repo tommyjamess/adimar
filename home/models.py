@@ -4,14 +4,14 @@ from django.db import models
 
 class Setting(models.Model):
     title = models.CharField(max_length=20)
-    logo = models.ImageField(upload_to='uploads/')
+    logo = models.ImageField(upload_to='images/')
     phone_one = models.CharField(max_length=14)
     phone_two = models.CharField(max_length=14)
     location = models.CharField(max_length=200)
     insta = models.CharField(max_length=50)
     facebook = models.CharField(max_length=50)
     email = models.CharField(max_length=50)
-    bannerimg = models.ImageField(upload_to='uploads/', blank=True, null=True)
+    bannerimg = models.ImageField(upload_to='images/', blank=True, null=True)
 
     updated = models.DateTimeField(auto_now_add=True)
 

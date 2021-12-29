@@ -17,9 +17,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'adimar/static')
 
 
 
@@ -32,7 +29,7 @@ SECRET_KEY = 'django-insecure-)3$8smfl_wg13p7l!)!0&43ft)d8h-xs#3n7)f=r+pdkif^@+m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['16.170.226.234', 'adimarcollections.com', 'www.adimarcollections.com',]
+ALLOWED_HOSTS = ['13.51.121.79', 'adimarcollections', 'www.adimarcollections']
 
 
 # Application definition
@@ -90,7 +87,6 @@ WSGI_APPLICATION = 'adimar.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -136,23 +132,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, '/static')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
-# STATIC_ROOT = '/adimar/static'
-
-# STATICFILES_DIRS = [
-
-#     BASE_DIR/ 'static'
-# ]
-
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'home/static')]
 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 
 LOGIN_REDIRECT_URL = 'home:home-index'
@@ -165,15 +153,12 @@ LOGOUT_URL = "user-logout"
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-SECRET_KEY =  'sk_test_f7d7980e92bd6c5f5cd42c150468712972efd426'
-PUBLIC_KEY = 'pk_test_dfbd33c33f9aefd94595502f232b31ead4ebf22d'
-
+SECRET_KEY =  'sk_live_90236949d9d542837671489a6d392840b95f9e6d'
+PUBLIC_KEY = 'pk_live_0c9b0b18d957d4d1db44781df18ca0f3df0025f6'
 
 # Media Folder settings
-MEDIA_DIR = os.path.join(BASE_DIR, 'uploads/uploads')
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads/uploads')
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 #...
 SITE_ID = 1
 

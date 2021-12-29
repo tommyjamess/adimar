@@ -261,7 +261,7 @@ def placeorder(request):
     if ShippingFee.objects.filter(user=request.user).exists():
         api_key = settings.SECRET_KEY
         url = 'https://api.paystack.co/transaction/initialize'
-        callback_url = 'http://adimarcollections.com/payments/verify_payment/'
+        callback_url = 'https://adimarcollections.com/payments/verify_payment/'
         ordernumber = request.POST['ordernumber']
         total = float(request.POST['amount']) * 100
         email = request.POST['email']
