@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-)3$8smfl_wg13p7l!)!0&43ft)d8h-xs#3n7)f=r+pdkif^@+m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['16.170.252.19', 'adimarcollections', 'www.adimarcollections']
+ALLOWED_HOSTS = ['16.170.252.19', 'adimarcollections.com', 'www.adimarcollections.com']
 
 
 # Application definition
