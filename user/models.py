@@ -5,15 +5,9 @@ from django.contrib.auth.models import User
 class BillingInfo(models.Model):
 
     STATES = (
-    ('Abia', 'Abia'),
-    ('Adamawa', 'Akwa-ibom'),
-    ('Edo', 'Edo'),
-    ('Imo', 'Imo'),
+    
     ('Lagos', 'Lagos'),
-    ('Ondo', 'Ondo'),
-    ('Abia', 'Abia'),
-    ('Abia', 'Abia'),
-    ('Abia', 'Abia'),
+    
     )
 
 
